@@ -1,0 +1,45 @@
+rules_version = '2';
+
+// The browser never talks to Firestore directly in this app: sign-in happens
+// with Firebase Auth, and every read and write goes through a Next.js route
+// using the Admin SDK (which bypasses these rules). So the safest rule set is
+// to close the client SDK off completely.
+//
+// If you later move reads or writes into the browser, swap in the commented
+// block below instead of deleting this one wholesale.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+// ---- Alternative: client-side access ----------------------------------
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//     function isCollegeUser() {
+//       return request.auth != null
+//         && request.auth.token.email.matches('.*@sode-edu[.]in$')
+//         && request.auth.token.email_verified == true;
+//     }
+//     function isAdmin() {
+//       return request.auth != null
+//         && request.auth.token.email in
+//            get(/databases/$(database)/documents/admins/list).data.emails;
+//     }
+//
+//     match /registrations/{id} {
+//       allow create: if isCollegeUser()
+//         && request.resource.data.teamLeaderEmail == request.auth.token.email;
+//       allow read, update, delete: if isAdmin();
+//     }
+//     match /settings/{doc} {
+//       allow read: if true;
+//       allow write: if isAdmin();
+//     }
+//     match /admins/{doc} {
+//       allow read, write: if false; // manage from the Firebase Console
+//     }
+//   }
+// }

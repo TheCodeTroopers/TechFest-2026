@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    letter-spacing: -0.02em;
+  }
+  :focus-visible {
+    outline: 3px solid #000;
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: #FFD60A;
+    color: #000;
+  }
+}
+
+@layer components {
+  /* One shared button shape so every action on the site reads the same way. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-ink px-5 py-3
+           text-base font-semibold leading-none transition-transform;
+  }
+  .btn-primary {
+    @apply btn bg-signal text-ink shadow-hard-sm;
+  }
+  .btn-primary:hover:not(:disabled) {
+    @apply -translate-y-0.5 shadow-hard;
+  }
+  .btn-quiet {
+    @apply btn bg-paper text-ink;
+  }
+  .btn-quiet:hover:not(:disabled) {
+    @apply bg-wash;
+  }
+  .btn:disabled {
+    @apply cursor-not-allowed border-rule bg-paper text-neutral-400 shadow-none;
+  }
+
+  .field {
+    @apply w-full border-2 border-ink bg-paper px-3 py-2.5 text-base
+           placeholder:text-neutral-400 disabled:bg-neutral-100 disabled:text-neutral-500;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-semibold;
+  }
+  .hint {
+    @apply mt-1 text-sm text-neutral-600;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
