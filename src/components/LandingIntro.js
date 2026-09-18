@@ -5,29 +5,7 @@ import Link from "next/link";
 import { DEFAULT_SETTINGS } from "@/lib/competitions";
 import ImageSlot from "./ImageSlot";
 
-/**
- * Full-bleed animated intro. Drop this in at the very top of a page —
- * it's meant to be the first thing a visitor sees.
- *
- * Usage:
- *   import LandingIntro from "@/components/LandingIntro";
- *   <LandingIntro />
- *
- * Optional props, if you want it wired to live data instead of the
- * defaults below:
- *   <LandingIntro
- *     deadline={settings.techcon?.registrationDeadline}
- *     eventDate={settings.techcon?.eventDate}
- *     venue="Your college, Main Auditorium"
- *     host="CSIT Department"
- *     imageSrc="/hero.jpg"
- *     imageAlt="Fest 2026 poster"
- *   />
- *
- * imageSrc points at a file in /public — e.g. save your image as
- * public/hero.jpg and pass imageSrc="/hero.jpg". Leave it unset and a
- * dashed placeholder shows instead.
- */
+
 export default function LandingIntro({
   deadline = DEFAULT_SETTINGS.techcon.registrationDeadline,
   eventDate = DEFAULT_SETTINGS.techcon.eventDate,
