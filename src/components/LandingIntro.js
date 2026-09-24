@@ -65,10 +65,14 @@ export default function LandingIntro({
           </div>
 
           {/* Date / Venue / Host */}
-          <div className="intro-fade mt-12 grid w-full max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="intro-fade mt-12 grid w-full max-w-2x1 grid-cols-1 gap-4 sm:grid-cols-3">
             <InfoCell label="Date" value="26–27 Oct 2026" />
-            <InfoCell label="Venue" value={venue} />
-            <InfoCell label="Host" value={host} />
+            <div className="sm:w-[220px]">
+  <InfoCell label="Venue" value={venue} />
+</div>
+            <div className="sm:ml-9">
+  <InfoCell label="Host" value={host} />
+</div>
           </div>
         </div>
 
